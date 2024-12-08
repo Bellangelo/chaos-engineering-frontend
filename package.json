@@ -4,7 +4,7 @@
   "description": "Chaos Engineering Frontend",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --config=jest.config.ts",
     "build": "tsc"
   },
   "keywords": [],
