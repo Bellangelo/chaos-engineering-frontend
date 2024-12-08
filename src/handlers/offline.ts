@@ -1,11 +1,10 @@
 import { OfflineInjectionConfig } from '../types/config/offline-config';
 
 export const handleOffline = async (
-    request: Request,
     config?: OfflineInjectionConfig
 ): Promise<Response | undefined> => {
     if (!config?.enabled || Math.random() > config.rate) {
-        return fetch(request); // Request proceeds as usual
+        return undefined;
     }
 
     // Simulate offline by returning a failed response

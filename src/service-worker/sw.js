@@ -27,11 +27,10 @@ self.addEventListener('fetch', (event: FetchEvent) => {
     event.respondWith(
         (async () => {
             // Apply offline logic first since it may block the request
-            const offlineResponse = await handleOffline(event.request, config.offline);
-            if (offlineResponse) return offlineResponse;
-
-            // Fetch the actual response
             let response = await fetch(event.request);
+
+            const offlineResponse = await handleOffline(config.offline);
+            if (offlineResponse) return offlineResponse;
 
             // Apply other handlers in sequence
             response = await handleLatency(response, config.latency);
