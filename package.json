@@ -1,14 +1,16 @@
 {
   "name": "chaos-engineering-frontend",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Chaos Engineering Frontend",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --config=jest.config.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["chaos", "engineering", "frontend", "service-worker"],
+  "author": "Aggelos Bellos",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/jest": "^29.5.14",

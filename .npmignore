@@ -1,0 +1,6 @@
+src/
+tests/
+.github/
+node_modules/
+jest.config.js
+README.md
