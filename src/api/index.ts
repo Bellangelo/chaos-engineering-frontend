@@ -1,4 +1,4 @@
-import { ChaosConfig } from '../types/config/config';
+import { ChaosConfig } from '../types/config';
 import { defaultConfig } from './defaults';
 
 let currentConfig: ChaosConfig = { ...defaultConfig };
