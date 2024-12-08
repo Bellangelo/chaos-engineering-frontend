@@ -1,7 +1,4 @@
-import { LatencyInjectionConfig } from './latency-config';
-import { ErrorInjectionConfig } from './errors-config';
-import { TamperInjectionConfig } from './tamper-config';
-import { OfflineInjectionConfig } from './offline-config';
+import { LatencyInjectionConfig, TamperInjectionConfig, ErrorInjectionConfig, OfflineInjectionConfig } from './';
 
 // Base configuration for the chaos library
 export interface ChaosConfig {

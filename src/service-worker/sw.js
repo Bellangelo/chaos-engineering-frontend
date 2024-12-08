@@ -7,8 +7,15 @@ let config: ChaosConfig = { enabled: false };
 self.addEventListener('message', (event: MessageEvent<WorkerMessage>) => {
     const message = event.data;
 
-    if (message.type === 'CONFIGURE') {
-        config = message.payload; // Enforce typing for the payload
+    switch (message.type) {
+        case 'CONFIGURE':
+            config = message.payload;
+            break;
+        case 'UPDATE_CONFIG':
+            config = { ...config, ...message.payload }; // Merge updated values
+            break;
+        default:
+            console.warn('Unknown message type:', message.type);
     }
 });
 

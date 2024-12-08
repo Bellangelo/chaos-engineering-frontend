@@ -6,5 +6,10 @@ export interface ConfigureMessage {
     payload: ChaosConfig;
 }
 
+export interface UpdateConfigMessage {
+    type: 'UPDATE_CONFIG';
+    payload: Partial<ChaosConfig>; // Allow partial updates
+}
+
 // Union type for all message types
-export type WorkerMessage = ConfigureMessage;
+export type WorkerMessage = ConfigureMessage | UpdateConfigMessage;
