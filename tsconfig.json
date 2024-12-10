@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "es6",
     "outDir": "./dist",
-    "rootDir": "./src",
     "strict": true,
-    "esModuleInterop": true
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "lib": ["dom", "webworker"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
