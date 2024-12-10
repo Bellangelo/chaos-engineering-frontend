@@ -43,5 +43,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install browser
+        run: npx playwright install chromium --with-deps
+
       - name: Run tests
         run: npm run test:e2e
