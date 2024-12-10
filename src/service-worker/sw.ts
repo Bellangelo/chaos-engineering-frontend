@@ -1,32 +1,31 @@
 import { handleLatency, handleErrors, handleTamper, handleOffline } from '../handlers';
-import { ChaosConfig } from '../types/config/config';
+import { ChaosConfig } from '../types/config';
 import { WorkerMessage } from '../types/messages';
+
+declare const self: ServiceWorkerGlobalScope;
 
 let config: ChaosConfig = { enabled: false };
 
-self.addEventListener('message', (event: MessageEvent<WorkerMessage>) => {
-    const message = event.data;
+self.addEventListener('message', (event: ExtendableMessageEvent) => {
+    const message = event.data as WorkerMessage;
 
     switch (message.type) {
         case 'CONFIGURE':
             config = message.payload;
             break;
+
         case 'UPDATE_CONFIG':
-            config = { ...config, ...message.payload }; // Merge updated values
+            config = { ...config, ...message.payload };
             break;
+
         default:
-            console.warn('Unknown message type:', message.type);
+            console.warn('Unknown message type');
     }
 });
 
 self.addEventListener('fetch', (event: FetchEvent) => {
-    if (!config.enabled) {
-        return; // Chaos is disabled, process normally
-    }
-
     event.respondWith(
         (async () => {
-            // Apply offline logic first since it may block the request
             let response = await fetch(event.request);
 
             const offlineResponse = await handleOffline(config.offline);

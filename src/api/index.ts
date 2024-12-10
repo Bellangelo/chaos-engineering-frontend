@@ -10,7 +10,7 @@ let currentConfig: ChaosConfig = { ...defaultConfig };
 export const registerChaosWorker = async (workerUrl: string): Promise<void> => {
     if ('serviceWorker' in navigator) {
         try {
-            const registration = await navigator.serviceWorker.register(workerUrl);
+            const registration = await navigator.serviceWorker.register(workerUrl, { scope: '/' });
             console.log('Chaos worker registered:', registration);
 
             // Send initial configuration
@@ -29,14 +29,12 @@ export const registerChaosWorker = async (workerUrl: string): Promise<void> => {
  */
 export const configureChaos = (config: ChaosConfig): void => {
     currentConfig = { ...currentConfig, ...config };
-    if (navigator.serviceWorker.controller) {
-        navigator.serviceWorker.controller.postMessage({
+    navigator.serviceWorker.ready.then((registration) => {
+        registration.active.postMessage({
             type: 'CONFIGURE',
             payload: currentConfig,
         });
-    } else {
-        console.warn('No active service worker found.');
-    }
+    });
 };
 
 /**
@@ -45,12 +43,10 @@ export const configureChaos = (config: ChaosConfig): void => {
  */
 export const updateChaosConfig = (updatedConfig: Partial<ChaosConfig>): void => {
     currentConfig = { ...currentConfig, ...updatedConfig };
-    if (navigator.serviceWorker.controller) {
-        navigator.serviceWorker.controller.postMessage({
+    navigator.serviceWorker.ready.then((registration) => {
+        registration.active.postMessage({
             type: 'UPDATE_CONFIG',
             payload: updatedConfig,
         });
-    } else {
-        console.warn('No active service worker found.');
-    }
+    });
 };

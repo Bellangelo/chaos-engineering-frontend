@@ -1,4 +1,4 @@
-import { LatencyInjectionConfig } from '../types/config/latency-config';
+import { LatencyInjectionConfig } from '../types/config';
 
 export const handleLatency = async (
     response: Response,

@@ -1,4 +1,4 @@
-import { ChaosConfig } from './config/config';
+import { ChaosConfig } from './config';
 
 // Message sent to configure the chaos library
 export interface ConfigureMessage {
