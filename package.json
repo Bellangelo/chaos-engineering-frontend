@@ -2,6 +2,7 @@
   "name": "chaos-engineering-frontend",
   "version": "0.0.2",
   "description": "Chaos Engineering Frontend",
+  "repository": "https://github.com/Bellangelo/chaos-engineering-frontend",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
